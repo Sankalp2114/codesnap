@@ -1,15 +1,15 @@
 export const languages = [
   {
     name: "javascript",
-    icon: "icons/javascript.svg",
+    icon: "icons/javascript-1.svg",
   },
   {
     name: "html",
-    icon: "icons/html.svg",
+    icon: "icons/1200px-HTL5_Badge.svg.png",
   },
   {
     name: "css",
-    icon: "icons/css.svg",
+    icon: "icons/121-css3-512.webp",
   },
   {
     name: "java",
@@ -17,14 +17,14 @@ export const languages = [
   },
   {
     name: "python",
-    icon: "icons/python.svg",
+    icon: "icons/Python-logo-notext.svg.webp",
   },
   {
     name: "csharp",
-    icon: "icons/csharp.svg",
+    icon: "icons/c-sharp-c-icon-1822x2048-wuf3ijab.png",
   },
   {
     name: "typescript",
-    icon: "icons/typescript.svg",
+    icon: "icons/Typescript_logo_2020.svg.png",
   },
 ];

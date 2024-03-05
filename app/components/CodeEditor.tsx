@@ -60,11 +60,26 @@ function CodeEditor({
       }}
       onResize={handleResize}
       className="resizeable-container relative"
-      style={{
-        background: "red",
-      }}
     >
-      <div>
+      <div className="code-block">
+        <div className="code-title h-[52px] px-4 flex items-center justify-between bg-black bg-opacity-80">
+          <div className="dots flex items-center gap-1">
+            <div className="w-3 h-3 rounded-full bg-[#ff5656]"></div>
+            <div className="w-3 h-3 rounded-full bg-[#ffbc6a]"></div>
+            <div className="w-3 h-3 rounded-full bg-[#67f772]"></div>
+          </div>
+          <div className="input-control w-full ">
+            <input
+              type="text"
+              name=""
+              id=""
+              className="w-full text-[hsla(0,0%,100%,.6)] outline-none font-medium text-center bg-transparent"
+            />
+          </div>
+          <div className="icon flex justify-center items-center p-1 bg-black bg-opacity-30 rounded-sm ">
+            <img src={icon} alt="" className="h-6 w-6" />
+          </div>
+        </div>
         <AceEdior
           value=" function() { return 'Hello World' } "
           name="id_of_div"
