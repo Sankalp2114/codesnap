@@ -48,3 +48,11 @@ body {
   justify-content: space-between;
   cursor: pointer;
 }
+.dropdown-menu {
+  padding: 0.25rem 0 0.4rem 0.4rem;
+  margin-top: 10px;
+  position: absolute;
+  background-color: #191919;
+  border: 1px solid #3c3c3c;
+  border-radius: 3px;
+}

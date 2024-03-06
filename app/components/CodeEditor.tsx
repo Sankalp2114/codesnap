@@ -7,6 +7,10 @@ import AceEdior from "react-ace";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-terminal";
 import "ace-builds/src-noconflict/theme-twilight";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-xcode";
+import "ace-builds/src-noconflict/theme-tomorrow";
+import "ace-builds/src-noconflict/theme-kuroir";
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-html";
@@ -84,7 +88,7 @@ function CodeEditor({
           value=" function() { return 'Hello World' } "
           name="id_of_div"
           fontSize={16}
-          theme="monokai"
+          theme={theme}
           mode={language}
           wrapEnabled={true}
           showPrintMargin={false}

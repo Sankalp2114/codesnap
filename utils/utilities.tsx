@@ -5,7 +5,7 @@ export const languages = [
   },
   {
     name: "html",
-    icon: "icons/1200px-HTL5_Badge.svg.png",
+    icon: "icons/1200px-HTML5_Badge.svg.png",
   },
   {
     name: "css",
@@ -27,4 +27,14 @@ export const languages = [
     name: "typescript",
     icon: "icons/Typescript_logo_2020.svg.png",
   },
+];
+
+export const themes = [
+  "monokai",
+  "github",
+  "tomorrow",
+  "kuroir",
+  "twilight",
+  "xcode",
+  "terminal",
 ];
