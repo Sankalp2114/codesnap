@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Interface } from "readline";
 import { themes } from "@/utils/utilities";
 import { ChevronDown } from "lucide-react";
+import OutsideClickHandler from "react-outside-click-handler";
 
 interface ThemeProps {
   theme: string;
@@ -18,29 +19,31 @@ function Theme({ theme, setTheme }: ThemeProps) {
     setTheme(newTheme);
   };
   return (
-    <div className="theme-selector" onClick={toggleDropdown}>
-      <p className="py-[5px] text-sm font-medium ">Theme</p>
-      <div className="dropdown-title capitalize w-[120px] ">
-        {theme}
-        <ChevronDown />
-      </div>
-      {showDropDown && (
-        <div className="dropdown-menu">
-          {themes.map((Theme, i) => {
-            return (
-              <div key={i}>
-                <button
-                  className="drowdown-item w-[120px] text-left top-[74px]"
-                  onClick={() => handleThemeChange(Theme)}
-                >
-                  {Theme}
-                </button>
-              </div>
-            );
-          })}
+    <OutsideClickHandler onOutsideClick={() => setShowDropDown(false)}>
+      <div className="theme-selector" onClick={toggleDropdown}>
+        <p className="py-[5px] text-sm font-medium ">Theme</p>
+        <div className="dropdown-title capitalize w-[120px] ">
+          {theme}
+          <ChevronDown />
         </div>
-      )}
-    </div>
+        {showDropDown && (
+          <div className="dropdown-menu w-[120px]">
+            {themes.map((Theme, i) => {
+              return (
+                <div key={i}>
+                  <button
+                    className="drowdown-item w-[120px] text-left top-[74px]"
+                    onClick={() => handleThemeChange(Theme)}
+                  >
+                    {Theme}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </OutsideClickHandler>
   );
 }
 

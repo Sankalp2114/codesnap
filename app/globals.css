@@ -30,6 +30,7 @@ body {
 }
 .ace_scroller {
   width: 100% !important;
+  height: 100% !important;
 }
 .code-title {
   border-top-left-radius: 0.5rem;

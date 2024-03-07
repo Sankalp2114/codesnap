@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Resizable } from "re-resizable";
 import { minify } from "next/dist/build/swc";
-import AceEdior from "react-ace";
+import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-terminal";
@@ -18,6 +18,7 @@ import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-typescript";
+import Padding from "./Padding";
 
 interface CodeProps {
   onCodeChnage: (code: string) => void;
@@ -25,7 +26,7 @@ interface CodeProps {
   theme: string;
   icon: string;
   background?: string;
-  padding?: string;
+  currentPadding?: string;
 }
 
 function CodeEditor({
@@ -34,19 +35,21 @@ function CodeEditor({
   theme,
   icon,
   background,
-  padding,
+  currentPadding,
 }: CodeProps) {
   const [width, setWidth] = useState(1000);
-  const [height, setHeight] = useState(300);
+  const [height, setHeight] = useState(550);
 
   // @ts-ignore
   const handleResize = (e, direction, ref, pos) => {
     const newHeight = ref.style.height;
-    setHeight(parseInt(newHeight));
+    setHeight(parseInt(newHeight, 10));
   };
   const updateSize = () => {
     setWidth(window.innerWidth);
   };
+
+  const [title, setTitle] = useState("Untitled");
 
   useEffect(() => {
     window.addEventListener("resize", updateSize);
@@ -55,7 +58,7 @@ function CodeEditor({
   }, []);
   return (
     <Resizable
-      minHeight={300}
+      minHeight={550}
       minWidth={500}
       maxWidth={1000}
       defaultSize={{
@@ -64,8 +67,9 @@ function CodeEditor({
       }}
       onResize={handleResize}
       className="resizeable-container relative"
+      style={{ background: background }}
     >
-      <div className="code-block">
+      <div className="code-block" style={{ padding: currentPadding }}>
         <div className="code-title h-[52px] px-4 flex items-center justify-between bg-black bg-opacity-80">
           <div className="dots flex items-center gap-1">
             <div className="w-3 h-3 rounded-full bg-[#ff5656]"></div>
@@ -78,13 +82,15 @@ function CodeEditor({
               name=""
               id=""
               className="w-full text-[hsla(0,0%,100%,.6)] outline-none font-medium text-center bg-transparent"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="icon flex justify-center items-center p-1 bg-black bg-opacity-30 rounded-sm ">
             <img src={icon} alt="" className="h-6 w-6" />
           </div>
         </div>
-        <AceEdior
+        <AceEditor
           value=" function() { return 'Hello World' } "
           name="id_of_div"
           fontSize={16}
@@ -93,6 +99,7 @@ function CodeEditor({
           wrapEnabled={true}
           showPrintMargin={false}
           highlightActiveLine={false}
+          height={`calc(${height}px - ${currentPadding} - ${currentPadding} - 52px)`}
           showGutter={false}
           editorProps={{ $blockScrolling: true }}
           className="ace-editor-container"
