@@ -19,18 +19,22 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/mode-typescript";
 import Padding from "./Padding";
+import { on } from "stream";
+import { languages } from "@/utils/utilities";
 
 interface CodeProps {
-  onCodeChnage: (code: string) => void;
+  onCodeChange: (code: string) => void;
   language: string;
   theme: string;
   icon: string;
   background?: string;
   currentPadding?: string;
+  code: string;
 }
 
 function CodeEditor({
-  onCodeChnage,
+  onCodeChange,
+  code,
   language,
   theme,
   icon,
@@ -38,7 +42,13 @@ function CodeEditor({
   currentPadding,
 }: CodeProps) {
   const [width, setWidth] = useState(1000);
-  const [height, setHeight] = useState(550);
+  const [height, setHeight] = useState(500);
+
+  const [defaultCode, setDefaultCode] = useState(code);
+
+  const handleCodeChange = (newCode: string) => {
+    onCodeChange(newCode);
+  };
 
   // @ts-ignore
   const handleResize = (e, direction, ref, pos) => {
@@ -58,7 +68,7 @@ function CodeEditor({
   }, []);
   return (
     <Resizable
-      minHeight={550}
+      minHeight={500}
       minWidth={500}
       maxWidth={1000}
       defaultSize={{
@@ -70,6 +80,22 @@ function CodeEditor({
       style={{ background: background }}
     >
       <div className="code-block" style={{ padding: currentPadding }}>
+        <div
+          className="handle handle-top absolute left-1/2 translate-x-[-50%] top-[-4px] w-2 h-2 
+            rounded-full bg-slate-300 hover:bg-slate-50"
+        ></div>
+        <div
+          className="handle handle-bottom absolute left-1/2 bottom-[-4px] w-2 h-2 rounded-full
+        bg-slate-300 hover:bg-slate-50 "
+        ></div>
+        <div
+          className="handle handle-left absolute left-[-4px] top-1/2 w-2 h-2 rounded-full 
+        bg-slate-300 hover:bg-slate-50 "
+        ></div>
+        <div
+          className="handle handle-right absolute right-[-4px] top-1/2 w-2 h-2 rounded-full
+        bg-slate-300 hover:bg-slate-50 "
+        ></div>
         <div className="code-title h-[52px] px-4 flex items-center justify-between bg-black bg-opacity-80">
           <div className="dots flex items-center gap-1">
             <div className="w-3 h-3 rounded-full bg-[#ff5656]"></div>
@@ -81,17 +107,18 @@ function CodeEditor({
               type="text"
               name=""
               id=""
-              className="w-full text-[hsla(0,0%,100%,.6)] outline-none font-medium text-center bg-transparent"
+              className="w-full leading-9 text-[hsla(0,0%,100%,.6)] outline-none font-medium text-center bg-transparent"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div className="icon flex justify-center items-center p-1 bg-black bg-opacity-30 rounded-sm ">
+          <div className="icon flex justify-center items-center p-1 bg-black bg-opacity-10 rounded-sm ">
             <img src={icon} alt="" className="h-6 w-6" />
           </div>
         </div>
         <AceEditor
-          value=" function() { return 'Hello World' } "
+          value={code}
+          onChange={handleCodeChange}
           name="id_of_div"
           fontSize={16}
           theme={theme}

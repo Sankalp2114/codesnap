@@ -33,13 +33,13 @@ function Background({ background, setBackground }: BackgroundProps) {
           <ChevronDown />
         </div>
         {showDropDown && (
-          <div className="dropdown-menu top-[74px] w-[62px] rounded-full flex flex-col gap-2">
+          <div className="dropdown-menu top-[64px] w-[62px] rounded-full flex flex-col gap-2">
             {backgrounds.map((bg, i) => {
               return (
                 <div
                   key={i}
                   onClick={() => handleBackgroundChange(bg)}
-                  className="w-[20px] h-[20px] rounded-full"
+                  className="w-[46px] h-[20px] rounded-full cursor-pointer"
                   style={{ background: bg }}
                 ></div>
               );

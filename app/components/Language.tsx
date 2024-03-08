@@ -8,9 +8,10 @@ interface LanguageProps {
   language: string;
   setLanguage: (language: string) => void;
   setIcon: (icon: string) => void;
+  setCode: (code: string) => void;
 }
 
-function Language({ language, setLanguage, setIcon }: LanguageProps) {
+function Language({ language, setLanguage, setIcon, setCode }: LanguageProps) {
   const [showDropDown, setShowDropDown] = useState(false);
   const toggleDrowdown = () => {
     setShowDropDown(!showDropDown);
@@ -21,6 +22,14 @@ function Language({ language, setLanguage, setIcon }: LanguageProps) {
     const newIcon = languages.find(
       (language) => language.name === newLanguage
     )?.icon;
+
+    const newCode = languages.find(
+      (language) => language.name === newLanguage
+    )?.code;
+
+    if (newCode) {
+      setCode(newCode);
+    }
 
     if (newIcon) {
       setIcon(newIcon);
