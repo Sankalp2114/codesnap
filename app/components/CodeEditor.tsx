@@ -79,7 +79,10 @@ function CodeEditor({
       className="resizeable-container relative"
       style={{ background: background }}
     >
-      <div className="code-block" style={{ padding: currentPadding }}>
+      <div
+        className="code-block transition-all ease-in-out duration-200"
+        style={{ padding: currentPadding }}
+      >
         <div
           className="handle handle-top absolute left-1/2 translate-x-[-50%] top-[-4px] w-2 h-2 
             rounded-full bg-slate-300 hover:bg-slate-50"
@@ -129,7 +132,7 @@ function CodeEditor({
           height={`calc(${height}px - ${currentPadding} - ${currentPadding} - 52px)`}
           showGutter={false}
           editorProps={{ $blockScrolling: true }}
-          className="ace-editor-container"
+          className="ace-editor-container transition-all ease-in-out duration-200"
         />
       </div>
     </Resizable>
