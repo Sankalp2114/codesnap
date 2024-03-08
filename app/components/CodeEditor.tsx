@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Resizable } from "re-resizable";
 import { minify } from "next/dist/build/swc";
 import AceEditor from "react-ace";
+import { Analytics } from "@vercel/analytics/react";
 
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-terminal";
